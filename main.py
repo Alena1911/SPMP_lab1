@@ -7,19 +7,24 @@ def clean_duplicates(v, n):
     # конечный лист
     end_vec = []
     for num in v:
-        # если текущее число равно текущему элементу листа
-        # добавляем во временный вектор текущий элемент листа v
-        if cur_num == num:
-            tmp_lst.append(num)
-        else:
-            # если во временном листе количество элементов <= n
-            # добавляем его в конечный лист
-            append_all_or_one(tmp_lst, end_vec, n)
-            cur_num = num
-            tmp_lst.append(num)
+        cur_num = delete_duplicates_more_n(tmp_lst, end_vec, num, cur_num, n)
     # так как после цикла временный лист не обработан
     append_all_or_one(tmp_lst, end_vec, n)
     return end_vec
+
+
+def delete_duplicates_more_n(tmp_lst, end_vec, num, cur_num, n):
+    # если текущее число равно текущему элементу листа
+    # добавляем во временный вектор текущий элемент листа v
+    if cur_num == num:
+        tmp_lst.append(num)
+    else:
+        # если во временном листе количество элементов <= n
+        # добавляем его в конечный лист
+        append_all_or_one(tmp_lst, end_vec, n)
+        cur_num = num
+        tmp_lst.append(num)
+    return cur_num
 
 
 # Добавляем в список все элементы tmpVec, если их количество <= n, иначе только один элемент
